@@ -75,7 +75,7 @@ const viteConfig = defineConfig({
     ]),
 
     //
-    removeFolders(import.meta.dirname, ["./dist/src", "./dist/_virtual", "./dist/node_modules"]),
+    removeFolders(import.meta.dirname, ["./dist/src", "./dist/_virtual"]),
   ],
 });
 

@@ -62,9 +62,9 @@ jobs:
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
 
-      # 5
-      - name: Check types, lint and formatting
-        run: pnpm check
+      # 5. this step is taken care by step 6
+      # - name: Check types, lint and formatting
+      #   run: pnpm check
 
       # 6
       - name: Check build

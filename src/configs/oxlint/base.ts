@@ -1,8 +1,8 @@
-import type { OxlintConfig } from "./types.ts";
+import type { OxlintConfig } from "oxlint";
 
 /* ============================================================================================= */
 
-const base = {
+const oxlintBase = {
   categories: {
     correctness: "error",
     nursery: "warn",
@@ -25,7 +25,8 @@ const base = {
   },
   plugins: ["eslint", "import", "jsdoc", "node", "oxc", "promise", "typescript", "unicorn"],
   rules: {
-    "capitalized-comments": [
+    "eslint/arrow-body-style": ["error", "always", { requireReturnForObjectLiteral: false }],
+    "eslint/capitalized-comments": [
       "error",
       "never",
       {
@@ -57,6 +58,7 @@ const base = {
     "eslint/no-magic-numbers": "off",
     "eslint/no-plusplus": "off",
     "eslint/no-ternary": "off",
+    "eslint/no-undefined": "off",
     "eslint/no-underscore-dangle": ["error", { allow: [] }],
     "eslint/no-use-before-define": "off",
     "eslint/no-warning-comments": "off",
@@ -70,6 +72,7 @@ const base = {
     "import/no-named-default": "off",
     "import/no-named-export": "off",
     "import/no-nodejs-modules": "off",
+    "import/prefer-default-export": "off",
     "jsdoc/require-param-type": "off",
     "jsdoc/require-returns": "off",
     "jsdoc/require-returns-type": "off",
@@ -105,4 +108,4 @@ const base = {
 
 /* ============================================================================================= */
 
-export default base;
+export default oxlintBase;

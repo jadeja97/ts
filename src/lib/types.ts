@@ -5,7 +5,9 @@
  *
  * @returns `true` if the data is a string, otherwise `false`.
  */
-export const isStr = <T>(arg: T) => typeof arg === "string";
+export const isStr = <T>(arg: T) => {
+  return typeof arg === "string";
+};
 
 /* ============================================================================================= */
 
@@ -16,7 +18,9 @@ export const isStr = <T>(arg: T) => typeof arg === "string";
  *
  * @returns `true` if the data is a number, otherwise `false`.
  */
-export const isNum = <T>(arg: T) => typeof arg === "number";
+export const isNum = <T>(arg: T) => {
+  return typeof arg === "number";
+};
 
 /* ============================================================================================= */
 
@@ -27,7 +31,9 @@ export const isNum = <T>(arg: T) => typeof arg === "number";
  *
  * @returns `true` if the data is a function, otherwise `false`.
  */
-export const isFn = <T>(arg: T) => typeof arg === "function";
+export const isFn = <T>(arg: T) => {
+  return typeof arg === "function";
+};
 
 /* ============================================================================================= */
 
@@ -38,7 +44,9 @@ export const isFn = <T>(arg: T) => typeof arg === "function";
  *
  * @returns `true` if the data is an array, otherwise `false`.
  */
-export const isArr = <T>(arg: T) => Array.isArray(arg);
+export const isArr = <T>(arg: T) => {
+  return Array.isArray(arg);
+};
 
 /* ============================================================================================= */
 
@@ -49,4 +57,6 @@ export const isArr = <T>(arg: T) => Array.isArray(arg);
  *
  * @returns `true` if the data is an object, otherwise `false`.
  */
-export const isObj = <T>(arg: T) => Boolean(arg) && typeof arg === "object" && !isArr(arg);
+export const isObj = <T>(arg: T) => {
+  return Boolean(arg) && typeof arg === "object" && !isArr(arg);
+};

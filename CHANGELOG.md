@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.0.0-alpha.1
+
+## Minor Changes
+
+- refactor: package architecture
+  - remove all `index.ts` files
+  - remove `types.ts` files from `./src/configs`
+  - add **vite** configs
+  - add `singleton` class
+  - add remove folders vite plugin
+  - rename global types
+  - update `oxlint` to `1.65.0` to fix memory issue
+  - adapted manual input entry `viteConfig.build.rolldownOptions.input` instead of
+    `viteConfig.build.lib.entry`
+
 ## 1.0.0-alpha.0
 
 शुभारम्भः

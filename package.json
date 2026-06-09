@@ -1,69 +1,57 @@
 {
   "name": "@jadeja/ts",
   "description": "an opinionated TypeScript toolkit",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "type": "module",
   "exports": {
-    "./configs/oxfmt": {
-      "types": "./dist/src/configs/oxfmt/index.d.ts",
-      "import": "./dist/oxfmt.js",
-      "default": "./dist/oxfmt.js",
-      "require": "./dist/oxfmt.js"
-    },
-    "./configs/oxfmt/types": {
-      "types": "./dist/src/configs/oxfmt/types.d.ts"
-    },
-    "./configs/oxlint": {
-      "types": "./dist/src/configs/oxlint/index.d.ts",
-      "import": "./dist/oxlint.js",
-      "default": "./dist/oxlint.js",
-      "require": "./dist/oxlint.js"
-    },
-    "./configs/oxlint/types": {
-      "types": "./dist/src/configs/oxlint/types.d.ts"
-    },
     "./configs/ts/*": {
-      "import": "./dist/src/configs/ts/*.json",
-      "default": "./dist/src/configs/ts/*.json",
-      "require": "./dist/src/configs/ts/*.json"
+      "import": "./dist/configs/ts/*.json",
+      "default": "./dist/configs/ts/*.json"
     },
-    "./lib": {
-      "types": "./dist/src/lib/index.d.ts",
-      "import": "./dist/lib.js",
-      "default": "./dist/lib.js",
-      "require": "./dist/lib.js"
+    "./configs/*": {
+      "types": "./dist/configs/*.d.ts",
+      "import": "./dist/configs/*.js",
+      "default": "./dist/configs/*.js"
     },
-    "./plugins/vite": {
-      "types": "./dist/src/plugins/vite/index.d.ts",
-      "import": "./dist/vite-plugins.js",
-      "default": "./dist/vite-plugins.js",
-      "require": "./dist/vite-plugins.js"
+    "./lib/*": {
+      "types": "./dist/lib/*.d.ts",
+      "import": "./dist/lib/*.js",
+      "default": "./dist/lib/*.js"
     },
-    "./types": {
-      "types": "./dist/src/types/index.d.ts"
+    "./plugins/*": {
+      "types": "./dist/plugins/*.d.ts",
+      "import": "./dist/plugins/*.js",
+      "default": "./dist/plugins/*.js"
+    },
+    "./types/*": {
+      "types": "./dist/types/*.d.ts",
+      "import": "./dist/types/*.d.ts",
+      "default": "./dist/types/*.d.ts"
     }
   },
   "scripts": {
     "prepare": "husky",
     "check": "tsc && oxfmt --check --disable-nested-config && oxlint --disable-nested-config",
     "fix": "oxlint --fix --disable-nested-config && oxfmt --disable-nested-config",
-    "build": "vite build",
-    "publish-it": "pnpm publish --tag alpha --access public --no-git-checks"
+    "build": "pnpm check && vite build",
+    "publish-it": "pnpm build && pnpm publish --tag alpha --access public --no-git-checks"
   },
   "devDependencies": {
     "@types/node": "^24.6.2",
+    "glob": "^13.0.6",
     "husky": "^9.1.7",
-    "lint-staged": "^17.0.5",
+    "lint-staged": "^17.0.7",
     "oxfmt": "^0.48.0",
-    "oxlint": "^1.63.0",
+    "oxlint": "^1.65.0",
     "oxlint-tsgolint": "^0.22.1",
     "typescript": "^6.0.3",
-    "unplugin-dts": "^1.0.0",
-    "vite": "^8.0.8"
+    "unplugin-dts": "^1.0.2",
+    "vite": "^8.0.16"
   },
   "peerDependencies": {
-    "@types/node": "^24.6.2",
-    "typescript": "^6.0.3"
+    "oxfmt": "^0.48.0",
+    "oxlint": "^1.65.0",
+    "oxlint-tsgolint": "^0.22.1"
   },
   "keywords": [
     "ts",

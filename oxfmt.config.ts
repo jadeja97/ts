@@ -1,12 +1,12 @@
 import { defineConfig } from "oxfmt";
 
-import { lib } from "./src/configs/oxfmt/index.ts";
+import oxfmtLib from "./src/configs/oxfmt/lib.ts";
 
-import type { OxfmtConfig } from "./src/configs/oxfmt/types.ts";
+import type { OxfmtConfig } from "oxfmt";
 
 /* ============================================================================================= */
 
-const oxfmtConfig: OxfmtConfig = defineConfig({ ...lib });
+const oxfmtConfig: OxfmtConfig = defineConfig({ ...oxfmtLib });
 
 /* ============================================================================================= */
 

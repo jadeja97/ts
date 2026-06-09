@@ -1,8 +1,8 @@
-import type { OxfmtConfig } from "./types.ts";
+import type { OxfmtConfig } from "oxfmt";
 
 /* ============================================================================================= */
 
-const base = {
+const oxfmtBase = {
   arrowParens: "always",
   bracketSpacing: true,
   endOfLine: "lf",
@@ -58,4 +58,4 @@ const base = {
 
 /* ============================================================================================= */
 
-export default base;
+export default oxfmtBase;

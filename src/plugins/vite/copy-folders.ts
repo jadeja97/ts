@@ -9,17 +9,19 @@ import { join, resolve } from "node:path";
  * @param dirname - `import.meta.dirname`
  * @param folders - an array of folder object containing `src` and `dest` property
  */
-const vitePluginCopyFolders = (dirname: string, folders: { src: string; dest: string }[]) => ({
-  name: "vite-plugin-copy-folders",
-  apply: "build",
-  enforce: "post",
+const vitePluginCopyFolders = (dirname: string, folders: { src: string; dest: string }[]) => {
+  return {
+    name: "vite-plugin-copy-folders",
+    apply: "build",
+    enforce: "post",
 
-  closeBundle() {
-    for (const folder of folders) {
-      copyFolderSync(resolve(dirname, folder.src), resolve(dirname, folder.dest));
-    }
-  },
-});
+    closeBundle() {
+      for (const folder of folders) {
+        copyFolderSync(resolve(dirname, folder.src), resolve(dirname, folder.dest));
+      }
+    },
+  };
+};
 
 /* ============================================================================================= */
 

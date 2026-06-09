@@ -1,18 +1,22 @@
-import base from "./base.ts";
+import oxfmtBase from "./base.ts";
 
-import type { OxfmtConfig } from "./types.ts";
+import type { OxfmtConfig } from "oxfmt";
 
 /* ============================================================================================= */
 
-const next = {
-  ...base,
+const oxfmtNext = {
+  //
+  ...oxfmtBase,
+
   bracketSameLine: false,
   embeddedLanguageFormatting: "auto",
   htmlWhitespaceSensitivity: "css",
   jsxSingleQuote: false,
   singleAttributePerLine: false,
+
+  //
 } satisfies OxfmtConfig;
 
 /* ============================================================================================= */
 
-export default next;
+export default oxfmtNext;

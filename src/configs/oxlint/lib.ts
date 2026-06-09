@@ -1,20 +1,11 @@
-import base from "./base.ts";
+import oxlintBase from "./base.ts";
 
-import type { OxlintConfig } from "./types.ts";
-
-/* ============================================================================================= */
-
-const eslintIdLength = base.rules["eslint/id-length"];
-eslintIdLength[1].exceptions = [...eslintIdLength[1].exceptions, "h", "m", "p", "w", "y", "z"];
-
-const lib = {
-  ...base,
-  rules: {
-    ...base.rules,
-    "eslint/id-length": eslintIdLength,
-  },
-} satisfies OxlintConfig;
+import type { OxlintConfig } from "oxlint";
 
 /* ============================================================================================= */
 
-export default lib;
+const oxlintLib = { ...oxlintBase } satisfies OxlintConfig;
+
+/* ============================================================================================= */
+
+export default oxlintLib;

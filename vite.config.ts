@@ -3,12 +3,18 @@ import { resolve } from "node:path";
 import dts from "unplugin-dts/vite";
 import { defineConfig } from "vite";
 
-import copyFolders from "./src/plugins/vite/copy-folders";
+import { peerDependencies } from "./package.json";
+import { viteLib as viteLibFn, createInputEntries } from "./src/configs/vite/lib.ts";
+import copyFolders from "./src/plugins/vite/copy-folders.ts";
+import removeFolders from "./src/plugins/vite/remove-folders.ts";
 
 /* ============================================================================================= */
 
+const viteLib = viteLibFn({ peerDependencies });
+
 const viteConfig = defineConfig({
   //
+  ...viteLib,
 
   /* ==============================================================================================
 		BUILD
@@ -16,39 +22,27 @@ const viteConfig = defineConfig({
 
   build: {
     //
-    minify: "oxc",
-    target: ["chrome109", "firefox109", "edge109", "safari16.3"],
-    emptyOutDir: true,
-    outDir: "dist",
-    sourcemap: true,
-
-    // mark as library
-    lib: {
-      entry: {
-        types: resolve(import.meta.dirname, "./src/types/index.ts"),
-        oxfmt: resolve(import.meta.dirname, "./src/configs/oxfmt/index.ts"),
-        oxlint: resolve(import.meta.dirname, "./src/configs/oxlint/index.ts"),
-        lib: resolve(import.meta.dirname, "./src/lib/index.ts"),
-        "vite-plugins": resolve(import.meta.dirname, "./src/plugins/vite/index.ts"),
-      },
-
-      // minify whitespace is disabled for es format
-      // https://vite.dev/config/build-options#build-minify
-      formats: ["es"],
-    },
+    ...viteLib.build,
 
     // tansformer options
     rolldownOptions: {
-      external: [
-        // add all the node in-built modules list here which are used
-        "node:fs",
-        "node:path",
-      ],
+      //
+      ...viteLib.build?.rolldownOptions,
+
+      input: createInputEntries({
+        dirname: import.meta.dirname,
+        entries: [
+          "src/configs/**/*.ts",
+          "src/lib/**/*.ts",
+          "src/plugins/**/*.ts",
+          "src/types/**/*.ts",
+        ],
+      }),
     },
   },
 
   /* ==============================================================================================
-		ALIASE
+		ALIAS
 	============================================================================================== */
 
   resolve: {
@@ -63,15 +57,25 @@ const viteConfig = defineConfig({
 
   plugins: [
     //
-    dts(),
+    dts({
+      entryRoot: "src",
+      outDirs: "dist",
+    }),
 
     //
     copyFolders(import.meta.dirname, [
       {
         src: "./src/configs/ts",
-        dest: "./dist/src/configs/ts",
+        dest: "./dist/configs/ts",
+      },
+      {
+        src: "./dist/src",
+        dest: "./dist",
       },
     ]),
+
+    //
+    removeFolders(import.meta.dirname, ["./dist/src", "./dist/_virtual", "./dist/node_modules"]),
   ],
 });
 

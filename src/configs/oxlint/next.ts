@@ -1,24 +1,38 @@
-import base from "./base.ts";
+import oxlintBase from "./base.ts";
 
-import type { OxlintConfig } from "./types.ts";
+import type { OxlintConfig } from "oxlint";
 
 /* ============================================================================================= */
 
-const next = {
-  ...base,
+const eslintIdLength = oxlintBase.rules["eslint/id-length"];
+eslintIdLength[1].exceptions = [...eslintIdLength[1].exceptions, "h", "m", "p", "w", "y", "z"];
+
+/* ============================================================================================= */
+
+const oxlintNext = {
+  //
+  ...oxlintBase,
+
   env: {
-    ...base.env,
+    //
+    ...oxlintBase.env,
+
     browser: true,
   },
+
   jsPlugins: [
     {
       name: "react-hooks-js",
       specifier: "eslint-plugin-react-hooks",
     },
   ],
-  plugins: [...base.plugins, "jsx-a11y", "nextjs", "react", "react-perf"],
+
+  plugins: [...oxlintBase.plugins, "jsx-a11y", "nextjs", "react", "react-perf"],
+
   rules: {
-    ...base.rules,
+    //
+    ...oxlintBase.rules,
+
     "eslint/no-undefined": "off",
     "import/no-unassigned-import": ["error", { allow: ["**/*.css"] }],
     "react/forbid-component-props": ["error", { forbid: ["style"] }],
@@ -62,4 +76,4 @@ const next = {
 
 /* ============================================================================================= */
 
-export default next;
+export default oxlintNext;

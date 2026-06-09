@@ -1,11 +1,11 @@
-import base from "./base.ts";
+import oxfmtBase from "./base.ts";
 
-import type { OxfmtConfig } from "./types.ts";
-
-/* ============================================================================================= */
-
-const lib = { ...base } satisfies OxfmtConfig;
+import type { OxfmtConfig } from "oxfmt";
 
 /* ============================================================================================= */
 
-export default lib;
+const oxfmtLib = { ...oxfmtBase } satisfies OxfmtConfig;
+
+/* ============================================================================================= */
+
+export default oxfmtLib;

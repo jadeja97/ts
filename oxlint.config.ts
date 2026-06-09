@@ -1,12 +1,12 @@
 import { defineConfig } from "oxlint";
 
-import { lib } from "./src/configs/oxlint/index.ts";
+import oxlintLib from "./src/configs/oxlint/lib.ts";
 
-import type { OxlintConfig } from "./src/configs/oxlint/types.ts";
+import type { OxlintConfig } from "oxlint";
 
 /* ============================================================================================= */
 
-const oxlintConfig: OxlintConfig = defineConfig({ ...lib });
+const oxlintConfig: OxlintConfig = defineConfig({ ...oxlintLib });
 
 /* ============================================================================================= */
 

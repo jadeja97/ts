@@ -11,7 +11,7 @@ import { isArr, isObj } from "./types.ts";
  *
  * @returns `source` object deep (nested) merge into `target` object.
  *
- * @throws If either `target` or `source` is not an object.
+ * @throws { Error } If either `target` or `source` is not an object.
  */
 export const deepMergeObj = <T, U>(target: T, source: U) => {
   //
@@ -23,12 +23,10 @@ export const deepMergeObj = <T, U>(target: T, source: U) => {
   }
 
   for (const key in source) {
-    // oxlint-disable typescript/no-unsafe-member-access
     if (key in (target as never) && isObj((target as never)[key]) && isObj(source[key])) {
-      // oxlint-disable typescript/no-unsafe-member-access
       deepMergeObj<typeof target, typeof source>((target as never)[key], (source as never)[key]);
     } else {
-      // oxlint-disable typescript/no-unsafe-member-access, typescript/no-explicit-any
+      // oxlint-disable-next-line typescript/no-explicit-any, typescript/no-unsafe-member-access
       (target as any)[key] = source[key];
     }
   }
@@ -47,7 +45,7 @@ export const deepMergeObj = <T, U>(target: T, source: U) => {
  *
  * @returns A deep copy of the input data.
  *
- * @throws If any part of the input data is not serializable.
+ * @throws { Error } If any part of the input data is not serializable.
  */
 export const deepCopy = <T>(data: T): T => {
   //
@@ -86,4 +84,6 @@ export const deepCopy = <T>(data: T): T => {
  * @returns A new RegExp instance with identical pattern and flags.
  */
 // reset lastIndex via new instance
-export const freshRegex = (regex: RegExp) => new RegExp(regex);
+export const freshRegex = (regex: RegExp | string) => {
+  return new RegExp(regex);
+};

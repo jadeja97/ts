@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-alpha.3
+
+## Patch Changes
+
+- fix: `_virtual` is missing from `dist` folder
+
 ## 1.0.0-alpha.2
 
 ## Patch Changes

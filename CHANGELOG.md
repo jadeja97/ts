@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-alpha.4
+
+## Patch Changes
+
+- fix: moved `glob` from dependencies to peerDependencies
+
 ## 1.0.0-alpha.3
 
 ## Patch Changes

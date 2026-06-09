@@ -7,13 +7,14 @@ settings:
 importers:
 
   .:
+    dependencies:
+      glob:
+        specifier: ^13.0.6
+        version: 13.0.6
     devDependencies:
       '@types/node':
         specifier: ^24.6.2
         version: 24.12.2
-      glob:
-        specifier: ^13.0.6
-        version: 13.0.6
       husky:
         specifier: ^9.1.7
         version: 9.1.7

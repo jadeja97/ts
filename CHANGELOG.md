@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-alpha.2
+
+## Patch Changes
+
+- chore: bump version and add changelog entry
+
 ## 1.0.0-alpha.1
 
 ## Minor Changes

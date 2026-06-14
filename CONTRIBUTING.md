@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in contributing to TS. Contributions are welcome! 🤗
+Thanks for your interest in contributing to `@jadeja/ts`. Contributions are welcome! 🤗
 
 We appreciate bug reports, feature requests, code improvements, and any other forms of contribution.
 
@@ -100,4 +100,4 @@ subject to the terms outlined in the project's
 
 Thank you for your time 🙂
 
-_Last updated on May 31, 2026_
+_Last updated on June 13, 2026_

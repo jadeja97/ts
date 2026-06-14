@@ -1,19 +1,21 @@
-import { log, throwError } from "./logger.ts";
+import { error, log, printBlankLine, printSeparator, throwError } from "./logger.ts";
 import { isArr, isObj } from "./types.ts";
+
+import type { AnyObject } from "../types/data.ts";
 
 /* ============================================================================================= */
 
 /**
  * recursively merges the properties of the source object into the target object.
  *
- * @param target - The target object to merge into. Must be an object.
- * @param source - The source object to merge from. Must be an object.
+ * @param target - the target object to merge into. Must be an object.
+ * @param source - the source object to merge from. Must be an object.
  *
  * @returns `source` object deep (nested) merge into `target` object.
  *
- * @throws { Error } If either `target` or `source` is not an object.
+ * @throws { TypeError } if either `target` or `source` is not an object.
  */
-export const deepMergeObj = <T, U>(target: T, source: U) => {
+export const deepMergeObj = <T extends object, U extends object>(target: T, source: U) => {
   //
   if (!isObj(target)) {
     return throwError("target must be an object");
@@ -23,11 +25,18 @@ export const deepMergeObj = <T, U>(target: T, source: U) => {
   }
 
   for (const key in source) {
-    if (key in (target as never) && isObj((target as never)[key]) && isObj(source[key])) {
-      deepMergeObj<typeof target, typeof source>((target as never)[key], (source as never)[key]);
+    //
+    if (!Object.hasOwn(source, key)) {
+      continue;
+    }
+
+    const targetValue = target[key];
+    const sourceValue = source[key];
+
+    if (key in target && isObj(targetValue) && isObj(sourceValue)) {
+      deepMergeObj(targetValue, sourceValue);
     } else {
-      // oxlint-disable-next-line typescript/no-explicit-any, typescript/no-unsafe-member-access
-      (target as any)[key] = source[key];
+      (target as AnyObject)[key] = sourceValue;
     }
   }
 
@@ -39,27 +48,29 @@ export const deepMergeObj = <T, U>(target: T, source: U) => {
 /**
  * creates a deep copy of the given data using `structuredClone`.
  *
- * If the input is not an object or array, the original data is returned.
+ * if the input is not an object or array, the original data is returned.
  *
- * @param data - The data to be copied. Can be an object or array.
+ * @param data - the data to be copied. Can be an object or array.
  *
- * @returns A deep copy of the input data.
+ * @returns a deep copy of the input data.
  *
- * @throws { Error } If any part of the input data is not serializable.
+ * @throws { DataCloneError } if any part of the input data (i.e., function) is not serializable.
  */
 export const deepCopy = <T>(data: T): T => {
   //
   try {
     //
-    if (isObj(data)) {
-      return { ...structuredClone(data) };
-    } else if (isArr(data)) {
-      return [...structuredClone(data)] as T;
+    if (isObj(data) || isArr(data)) {
+      return structuredClone(data);
     }
     //
-  } catch (error) {
-    log("Any part of the input data is not serializable.");
-    throwError(error);
+  } catch (err) {
+    printSeparator();
+    error("DEEP COPY :: Any part of the input data is not serializable.");
+    printBlankLine();
+    log(data);
+    printSeparator();
+    return throwError(err);
   }
 
   return data;
@@ -76,8 +87,8 @@ export const deepCopy = <T>(data: T): T => {
  * The returned RegExp preserves: - pattern source - flags (g, i, m, s, u, y, d, etc.)
  *
  * @example
- *   -fresh(LCH_COLOR_FORMAT_PATTERN).test(rawColor);
- *   -text.replace(fresh(LCH_COLOR_FORMAT_PATTERN), transformer);
+ *   fresh(LCH_COLOR_FORMAT_PATTERN).test(rawColor);
+ *   text.replace(fresh(LCH_COLOR_FORMAT_PATTERN), transformer);
  *
  * @param regex - The RegExp instance to clone.
  *

@@ -1,4 +1,4 @@
-import { throwError } from "./logger.ts";
+import { printBlankLine, printSeparator, throwError } from "./logger.ts";
 
 /* ============================================================================================= */
 
@@ -22,7 +22,7 @@ export const sleep = async (time = 250): Promise<void> => {
 /**
  * extracts extensions from a string pattern like ".ext" or ".{ext1,ext2}"
  *
- * @param str - The pattern string (e.g., "*.{ts,tsx}")
+ * @param str - the pattern string (e.g., "*.{ts,tsx}")
  */
 export const extractExtensions = (str: string) => {
   // regex explanation:
@@ -34,6 +34,8 @@ export const extractExtensions = (str: string) => {
   const match = /\.(\{?[\w,]+\}?)$/.exec(str);
 
   if (!match) {
+    printSeparator();
+    printBlankLine();
     return throwError(`extension(s) are required! :: ${str}`);
   }
 

@@ -1,3 +1,5 @@
+import { deepMergeObj } from "../../lib/operations.ts";
+
 import oxlintBase from "./base.ts";
 
 import type { OxlintConfig } from "oxlint";
@@ -9,14 +11,8 @@ eslintIdLength[1].exceptions = [...eslintIdLength[1].exceptions, "h", "m", "p", 
 
 /* ============================================================================================= */
 
-const oxlintNext = {
-  //
-  ...oxlintBase,
-
+const oxlintNext = deepMergeObj(oxlintBase, {
   env: {
-    //
-    ...oxlintBase.env,
-
     browser: true,
   },
 
@@ -30,9 +26,7 @@ const oxlintNext = {
   plugins: [...oxlintBase.plugins, "jsx-a11y", "nextjs", "react", "react-perf"],
 
   rules: {
-    //
-    ...oxlintBase.rules,
-
+    "eslint/id-length": eslintIdLength,
     "eslint/no-undefined": "off",
     "import/no-unassigned-import": ["error", { allow: ["**/*.css"] }],
     "react/forbid-component-props": ["error", { forbid: ["style"] }],
@@ -72,7 +66,7 @@ const oxlintNext = {
     "react-perf/jsx-no-new-function-as-prop": "off",
     "react-perf/jsx-no-new-object-as-prop": "off",
   },
-} satisfies OxlintConfig;
+} satisfies OxlintConfig);
 
 /* ============================================================================================= */
 

@@ -1,21 +1,18 @@
+import { deepMergeObj } from "../../lib/operations.ts";
+
 import oxfmtBase from "./base.ts";
 
 import type { OxfmtConfig } from "oxfmt";
 
 /* ============================================================================================= */
 
-const oxfmtNext = {
-  //
-  ...oxfmtBase,
-
+const oxfmtNext = deepMergeObj(oxfmtBase, {
   bracketSameLine: false,
   embeddedLanguageFormatting: "auto",
   htmlWhitespaceSensitivity: "css",
   jsxSingleQuote: false,
   singleAttributePerLine: false,
-
-  //
-} satisfies OxfmtConfig;
+} satisfies OxfmtConfig);
 
 /* ============================================================================================= */
 

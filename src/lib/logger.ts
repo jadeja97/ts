@@ -1,7 +1,7 @@
 /**
  * throws an error with the provided message.
  *
- * @param err - The error message to throw.
+ * @param err - the error message to throw.
  */
 export const throwError = <T>(err: T) => {
   //
@@ -21,51 +21,31 @@ export const throwError = <T>(err: T) => {
 /* ============================================================================================= */
 
 /**
- * logs a message to the console.
+ * prints a message to the console.
  *
- * @param msg - The message to log.
+ * this will bypass `eslint/no-console`
+ *
+ * @param msg - the message to print.
  */
-export const { log } = console;
+export const { log, warn, error, info, debug, dir } = console;
 
 /* ============================================================================================= */
 
 /**
- * logs a divider line to the console.
+ * prints a separator line to the console.
  *
- * @param divider - The character to use for the divider (default is "-").
- * @param count - The number of times to repeat the divider character (default is 50).
+ * @param separator - the character to use for the separator (default is "─").
+ * @param count - the number of times to repeat the separator character (default is 80).
  */
-export const logDivider = (divider = "-", count = 50) => {
-  log(divider.repeat(count));
+export const printSeparator = (separator = "─", count = 80) => {
+  log(separator.repeat(count));
 };
 
 /* ============================================================================================= */
 
 /**
- * logs a new line with an optional message to the console.
- *
- * @param msg - The message to include in the new line (optional).
+ * print a blank line to the console.
  */
-export const logNewLine = <T>(msg?: T) => {
-  log(`\n${msg}\n`);
-};
-
-/* ============================================================================================= */
-
-/**
- * logs a warning message to the console.
- *
- * @param msg - The warning message to log.
- */
-export const { warn } = console;
-
-/* ============================================================================================= */
-
-/**
- * logs a new line with an optional warning message to the console.
- *
- * @param msg - The warning message to include in the new line (optional).
- */
-export const warnNewLine = <T>(msg?: T) => {
-  warn(`\n${msg}\n`);
+export const printBlankLine = () => {
+  log("");
 };

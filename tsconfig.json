@@ -1,10 +1,6 @@
 {
   "extends": "./src/configs/ts/lib.json",
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
+  "compilerOptions": {},
   "include": ["./src"],
   "exclude": ["./node_modules", "dist"]
 }

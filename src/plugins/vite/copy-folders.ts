@@ -28,10 +28,10 @@ const vitePluginCopyFolders = (dirname: string, folders: { src: string; dest: st
 /**
  * copies an entire folder and its contents to a destination folder
  *
- * If the destination directory does not exist, it will be created automatically.
+ * if the destination directory does not exist, it will be created automatically.
  *
- * @param src - The source directory path.
- * @param dest - The destination directory path.
+ * @param src - the source directory path.
+ * @param dest - the destination directory path.
  */
 const copyFolderSync = (src: string, dest: string) => {
   //
@@ -42,6 +42,7 @@ const copyFolderSync = (src: string, dest: string) => {
   const entries = readdirSync(src, { withFileTypes: true });
 
   for (const entry of entries) {
+    //
     const srcPath = join(src, entry.name);
     const destPath = join(dest, entry.name);
 

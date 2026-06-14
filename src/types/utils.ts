@@ -1,25 +1,6 @@
-/**
- * recursive object where each key maps to a nested object or a final value.
- */
-export interface NestedObject<T> {
-  /**
-   * dynamic key for a nested branch or leaf value.
-   */
-  [key: string]: NestedObject<T> | T;
-}
+import type { AnyFunction, AnyObject } from "./data.ts";
 
-/**
- * package version pattern
- *
- * - "1.0.0",
- * - "1.0.0-alpha.0"
- */
-export type PackageVersion = `${number}.${number}.${number}${`-${string}.${number}` | ""}`;
-
-/**
- * primitive data types
- */
-export type Primitive = string | number | boolean | bigint | symbol | null | undefined;
+/* ============================================================================================= */
 
 /**
  * ensures IDEs suggest literals but accept any base value.
@@ -42,11 +23,12 @@ export type PrimitiveWithAutocomplete<T> = T extends string
             T | (symbol & {})
         : T;
 
+/* ============================================================================================= */
+
 /**
  * extend recursive structural mapper. K is the union of keys that MUST be required.
  */
-// oxlint-disable-next-line typescript/no-explicit-any
-export type Extend<T, K extends keyof T = never> = T extends (...args: any[]) => any
+export type Extend<T, K extends keyof T = never> = T extends AnyFunction
   ? T
   : T extends (infer U)[]
     ? Extend<U>[]
@@ -58,6 +40,5 @@ export type Extend<T, K extends keyof T = never> = T extends (...args: any[]) =>
           // optional keys (all others)
           -readonly [U in Exclude<keyof T, K>]?: Extend<T[U]>;
           // extendibility
-          // oxlint-disable-next-line typescript/no-explicit-any
-        } & Record<string, any>
+        } & AnyObject
       : PrimitiveWithAutocomplete<T>;

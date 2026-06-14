@@ -1,4 +1,4 @@
-# TS
+# @jadeja/ts
 
 _an opinionated TypeScript toolkit_
 
@@ -8,7 +8,7 @@ _an opinionated TypeScript toolkit_
 
 ## Documentation
 
-Documentation will be added in future releases.
+ℹ️ Documentation will be added in future releases.
 
 ### See In Action
 
@@ -20,13 +20,13 @@ Documentation will be added in future releases.
 ## Community
 
 For help, discussion, or any other conversation, see
-[Discuss TS on GitHub](https://github.com/JadejaHQ/ts/discussions)
+[Discuss `@jadeja/ts` on GitHub](https://github.com/JadejaHQ/ts/discussions)
 
 <br />
 
 ## Contributing
 
-If you're interested in contributing to TS, please read our
+If you're interested in contributing to `@jadeja/ts`, please read our
 [Contributing Guidelines](https://github.com/JadejaHQ/ts/blob/main/CONTRIBUTING.md) **before
 submitting a pull request**.
 

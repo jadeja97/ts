@@ -1,7 +1,7 @@
 {
   "name": "@jadeja/ts",
   "description": "an opinionated TypeScript toolkit",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.6",
   "type": "module",
   "exports": {
     "./configs/ts/*": {
@@ -41,18 +41,18 @@
     "@types/node": "^24.6.2",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.7",
-    "oxfmt": "^0.48.0",
-    "oxlint": "^1.65.0",
-    "oxlint-tsgolint": "^0.22.1",
+    "oxfmt": "~0.48.0",
+    "oxlint": "~1.65.0",
+    "oxlint-tsgolint": "~0.22.1",
     "typescript": "^6.0.3",
     "unplugin-dts": "^1.0.2",
     "vite": "^8.0.16"
   },
   "peerDependencies": {
-    "glob": "^13.0.6",
-    "oxfmt": "^0.48.0",
-    "oxlint": "^1.65.0",
-    "oxlint-tsgolint": "^0.22.1"
+    "glob": "~13.0.6",
+    "oxfmt": "~0.48.0",
+    "oxlint": "~1.65.0",
+    "oxlint-tsgolint": "~0.22.1"
   },
   "keywords": [
     "ts",
@@ -63,7 +63,9 @@
     "oxlint",
     "tsconfig",
     "lib",
-    "plugins"
+    "plugins",
+    "vite",
+    "jadeja"
   ],
   "files": [
     "CHANGELOG.md",

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-alpha.6
+
+### Minor Changes
+
+- refactor: improve full project
+
 ## 1.0.0-alpha.5
 
 ### Patch Changes
@@ -48,7 +54,7 @@
 
 ---
 
-**TS**
+**`@jadeja/ts`**
 
 All notable changes to this project is documented in this file.
 

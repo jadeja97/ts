@@ -100,6 +100,7 @@ const oxlintBase = {
     "typescript/prefer-readonly-parameter-types": "off",
     "typescript/restrict-template-expressions": "off",
     "typescript/strict-boolean-expressions": "off",
+    "unicorn/catch-error-name": ["error", { ignore: ["err"] }],
     "unicorn/no-null": "off",
     "unicorn/no-lonely-if": "off",
     "unicorn/switch-case-braces": "off",

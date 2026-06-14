@@ -2,19 +2,18 @@ import dts from "unplugin-dts/vite";
 import { defineConfig } from "vite";
 
 import { peerDependencies } from "./package.json";
-import { viteLib as viteLibFn, createInputEntries, dtsOptions } from "./src/configs/vite/lib.ts";
+import viteLib, { createInputEntries } from "./src/configs/vite/lib.ts";
 import { deepMergeObj } from "./src/lib/operations.ts";
 import copyFolders from "./src/plugins/vite/copy-folders.ts";
+import removeFolders from "./src/plugins/vite/remove-folders.ts";
 
 import type { UserConfig } from "vite";
 
 /* ============================================================================================= */
 
-const viteLib = viteLibFn({ peerDependencies });
-
 const viteConfig: UserConfig = defineConfig(
   //
-  deepMergeObj(viteLib, {
+  deepMergeObj(viteLib({ peerDependencies }), {
     //
 
     /* ============================================================================================
@@ -42,7 +41,7 @@ const viteConfig: UserConfig = defineConfig(
 
     plugins: [
       //
-      dts(dtsOptions),
+      dts(),
 
       //
       copyFolders(import.meta.dirname, [
@@ -50,7 +49,14 @@ const viteConfig: UserConfig = defineConfig(
           src: "./src/configs/ts",
           dest: "./dist/configs/ts",
         },
+        {
+          src: "./dist/src",
+          dest: "./dist",
+        },
       ]),
+
+      //
+      removeFolders(import.meta.dirname, ["./dist/src"]),
     ],
   }),
 );

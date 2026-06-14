@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-alpha.7
+
+### Patch Changes
+
+- fix: generated `.d.ts` files location, other fixes
+
 ## 1.0.0-alpha.6
 
 ### Minor Changes

@@ -7,14 +7,13 @@ import { extractExtensions } from "../../lib/utils.ts";
 
 import viteBase from "./base.ts";
 
-import type { PluginOptions } from "unplugin-dts";
 import type { UserConfig } from "vite";
 
 /* ============================================================================================= */
 
 export type ViteLib = (options: { peerDependencies?: Record<string, string> }) => UserConfig;
 
-export const viteLib: ViteLib = ({ peerDependencies = {} }) => {
+const viteLib: ViteLib = ({ peerDependencies = {} }) => {
   //
 
   return deepMergeObj(viteBase, {
@@ -101,26 +100,6 @@ export const createInputEntries = ({ dirname, entries }: CreateInputEntriesOptio
   }
 
   return paths;
-};
-
-/* ============================================================================================= */
-
-export const dtsOptions: PluginOptions = {
-  //
-  entryRoot: "src",
-  outDirs: "dist",
-
-  compilerOptions: {
-    declarationMap: true,
-  },
-
-  beforeWriteFile: (filePath, content) => {
-    // this forces the file into 'dist/' regardless of subfolder structure
-    return {
-      filePath: filePath.replace("dist/src", "dist"),
-      content,
-    };
-  },
 };
 
 /* ============================================================================================= */

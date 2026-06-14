@@ -1,7 +1,7 @@
 const lintStagedConfig = {
   // 1. run type checking once for the whole project
   // using a function to prevent file arguments being passed to tsc
-  "*.{ts,tsx}": () => {
+  "*.ts": () => {
     return "tsc";
   },
 

@@ -35,3 +35,10 @@ export type AnyArray = unknown[];
  * primitive data types
  */
 export type Primitive = string | number | boolean | bigint | symbol | null | undefined;
+
+/* ============================================================================================= */
+
+/**
+ * extract element type from array
+ */
+export type ArrayElementType<T> = T extends (infer U)[] ? U : never;
